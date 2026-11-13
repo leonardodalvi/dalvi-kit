@@ -58,6 +58,7 @@ os arquivos e não se atualiza sozinha: rode `npx skills@latest update`.
 | `web-design-guidelines` | O agente aciona sozinho quando você pede revisão de UI, acessibilidade ou UX | Revisa código de interface contra as Web Interface Guidelines da Vercel e aponta cada problema em `arquivo:linha` |
 | `playwright-cli` | O agente aciona sozinho quando precisa usar um navegador ou rodar testes Playwright | Abre e controla um navegador pelo `playwright-cli` (navegar, clicar, preencher, capturar tela, gravar vídeo, simular requisições) e roda, depura e gera testes Playwright |
 | `prod-data-guard` | O agente aciona sozinho quando vai ler ou alterar dado de produção (banco, API REST, carga em massa) | Explora só a estrutura, sem imprimir valor de campo. Para alterar, faz ensaio sem gravar, pede confirmação digitada, aplica, confere linha a linha contra a fonte e apaga os temporários com dado pessoal |
+| `session-closeout` | O agente aciona só quando você pede, com essas palavras, para encerrar a sessão ("encerra a sessão", "wrap up") | Registra os procedimentos e as soluções achadas depois de um erro, anexa uma entrada ao log do dia, reescreve o estado e commita só os arquivos que a sessão tocou, sem levar junto o trabalho de outras sessões |
 
 O `playwright-cli` precisa do programa instalado: `npm install -g @playwright/cli@latest`,
 ou um Playwright local no projeto (`npx playwright cli`). No Claude Code, a skill
@@ -75,6 +76,15 @@ são somente leitura, quem confirma uma alteração e com que palavra, e onde
 podem ficar os arquivos temporários ficam no `CLAUDE.md` ou no `AGENTS.md` do
 projeto, e a skill manda procurar ali. Sem regra no projeto, ela pede a
 confirmação a quem fez o pedido.
+
+O `session-closeout` também traz só o método. Onde ficam os procedimentos, o
+log do dia e o arquivo de estado, o formato da mensagem de commit, os trailers
+proibidos e se pode dar push ficam no `CLAUDE.md` ou no `AGENTS.md` do projeto.
+Sem regra no projeto, ela não cria pastas de registro no repositório: deixa uma
+nota de passagem na pasta temporária do sistema e faz um commit local, sem push.
+Arquivo que outra sessão também alterou entra só com as linhas desta sessão; o
+que já existia sem estar no git, como o log do dia começado por outra sessão,
+fica fora do commit, e ela avisa.
 
 ## Estrutura
 
@@ -120,6 +130,11 @@ plugins/dalvi-kit/
   `references/exploration-recipes.md` adaptam a skill `schema-exploration` de
   [timescale/pg-aiguide](https://github.com/timescale/pg-aiguide), sob licença
   Apache 2.0, com a licença e o `NOTICE` dentro da pasta da skill.
+- `session-closeout` foi escrita para este kit, a partir da skill `handoff` de
+  [mattpocock/skills](https://github.com/mattpocock/skills), sob licença MIT,
+  com inspiração na `retro` do mesmo repositório. Da `wrap-up` de
+  [rohitg00/pro-workflow](https://github.com/rohitg00/pro-workflow), que não
+  declara licença, vieram só ideias, sem texto copiado.
 
 Os avisos de copyright e as licenças estão em
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

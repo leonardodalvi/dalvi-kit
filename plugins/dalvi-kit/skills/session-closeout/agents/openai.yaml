@@ -1,0 +1,3 @@
+interface:
+  display_name: "Session Closeout"
+  short_description: "Record learnings and commit only this session's work"

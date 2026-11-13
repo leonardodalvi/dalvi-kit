@@ -106,3 +106,25 @@ License, Version 2.0. The license text and the upstream NOTICE file ship with
 the skill, unmodified, in `plugins/dalvi-kit/skills/prod-data-guard/LICENSE`
 and `plugins/dalvi-kit/skills/prod-data-guard/NOTICE`. They cover the adapted
 queries; the rest of the skill is this kit's own text.
+
+## session-closeout
+
+`plugins/dalvi-kit/skills/session-closeout/` was written for this kit,
+starting from the `handoff` skill of
+[mattpocock/skills](https://github.com/mattpocock/skills) (commit `5863806`,
+`skills/productivity/handoff/SKILL.md`). From it come the handoff note in the
+OS temporary directory, used when the project defines no place for the
+records, the advice to link to existing artifacts instead of copying them,
+and keeping secrets and personal data out of the records. One phrase is
+adapted: the temporary directory given as "`$TMPDIR`, else `/tmp`; `%TEMP%`
+on Windows". The `retro` skill of the same repository
+(`skills/engineering/retro/SKILL.md`) inspired going back over the session's
+errors and wrong turns; no text was copied from it.
+
+Both are distributed under the MIT License, Copyright (c) 2026 Matt Pocock,
+whose full text is in the "grill-me and grilling" section above.
+
+The `wrap-up` skill of
+[rohitg00/pro-workflow](https://github.com/rohitg00/pro-workflow) (commit
+`86d5f27`) declares no license. Only ideas were taken from it (an end-of-session
+audit of the changes and a note for the next session); no text was copied.
