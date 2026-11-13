@@ -70,3 +70,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+## playwright-cli
+
+`plugins/dalvi-kit/skills/playwright-cli/` (`SKILL.md` and `references/`) is
+an unmodified copy of `skills/playwright-cli` from
+[microsoft/playwright-cli](https://github.com/microsoft/playwright-cli)
+(commit `745fbc7`).
+
+Copyright (c) Microsoft Corporation. Licensed under the Apache License,
+Version 2.0. The full license text ships with the skill, in
+`plugins/dalvi-kit/skills/playwright-cli/LICENSE.txt`, so it travels with
+every copy of the skill. The upstream repository has no NOTICE file.
+
+The only file added to that folder is `agents/openai.yaml` (Codex metadata),
+written for this kit.

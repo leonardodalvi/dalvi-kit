@@ -56,6 +56,12 @@ os arquivos e não se atualiza sozinha: rode `npx skills@latest update`.
 | `grill-me` | Só você (no Claude Code, `/dalvi-kit:grill-me`) | Entrevista em rodadas que transforma uma ideia solta em decisões tomadas por você |
 | `grilling` | O agente aciona sozinho, ou o `grill-me` chama | O método da entrevista: árvore de decisões, fronteira, rodadas com resposta recomendada, confirmação antes de agir |
 | `web-design-guidelines` | O agente aciona sozinho quando você pede revisão de UI, acessibilidade ou UX | Revisa código de interface contra as Web Interface Guidelines da Vercel e aponta cada problema em `arquivo:linha` |
+| `playwright-cli` | O agente aciona sozinho quando precisa usar um navegador ou rodar testes Playwright | Abre e controla um navegador pelo `playwright-cli` (navegar, clicar, preencher, capturar tela, gravar vídeo, simular requisições) e roda, depura e gera testes Playwright |
+
+O `playwright-cli` precisa do programa instalado: `npm install -g @playwright/cli@latest`,
+ou um Playwright local no projeto (`npx playwright cli`). No Claude Code, a skill
+declara `allowed-tools`, que libera os comandos `playwright-cli` e
+`npx playwright` sem pedir confirmação enquanto ela está ativa.
 
 As regras do `web-design-guidelines` ficam numa cópia fixa dentro da skill
 (`references/command.md`), em vez de serem baixadas a cada revisão. Para
@@ -100,6 +106,9 @@ plugins/dalvi-kit/
   regras, de
   [vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines),
   ambos sob licença MIT.
+- `playwright-cli` vem de
+  [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli), sob
+  licença Apache 2.0, com o texto da licença dentro da pasta da skill.
 
 Os avisos de copyright e as licenças estão em
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
