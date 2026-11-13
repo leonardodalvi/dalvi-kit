@@ -55,6 +55,13 @@ os arquivos e não se atualiza sozinha: rode `npx skills@latest update`.
 | --- | --- | --- |
 | `grill-me` | Só você (no Claude Code, `/dalvi-kit:grill-me`) | Entrevista em rodadas que transforma uma ideia solta em decisões tomadas por você |
 | `grilling` | O agente aciona sozinho, ou o `grill-me` chama | O método da entrevista: árvore de decisões, fronteira, rodadas com resposta recomendada, confirmação antes de agir |
+| `web-design-guidelines` | O agente aciona sozinho quando você pede revisão de UI, acessibilidade ou UX | Revisa código de interface contra as Web Interface Guidelines da Vercel e aponta cada problema em `arquivo:linha` |
+
+As regras do `web-design-guidelines` ficam numa cópia fixa dentro da skill
+(`references/command.md`), em vez de serem baixadas a cada revisão. Para
+atualizar, baixe de novo o `command.md` do
+[vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines)
+e troque o commit citado no `SKILL.md` e em `THIRD_PARTY_NOTICES.md`.
 
 ## Estrutura
 
@@ -86,7 +93,13 @@ plugins/dalvi-kit/
 
 ## Créditos
 
-`grill-me` e `grilling` vêm de
-[mattpocock/skills](https://github.com/mattpocock/skills), sob licença MIT.
-O aviso de copyright e a licença estão em
+- `grill-me` e `grilling` vêm de
+  [mattpocock/skills](https://github.com/mattpocock/skills), sob licença MIT.
+- `web-design-guidelines` vem de
+  [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills), e as
+  regras, de
+  [vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines),
+  ambos sob licença MIT.
+
+Os avisos de copyright e as licenças estão em
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
