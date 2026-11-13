@@ -2,8 +2,8 @@
 
 The skills `grill-me` and `grilling` in `plugins/dalvi-kit/skills/` are
 derived from [mattpocock/skills](https://github.com/mattpocock/skills).
-The only change: `grill-me` calls the skill by its namespaced name inside
-this plugin, `dalvi-kit:grilling`, instead of `grilling`.
+The only change: `grill-me` adds a note that, in Claude Code, the `grilling`
+skill is listed under this plugin's namespace as `dalvi-kit:grilling`.
 
 They are distributed under the original license, reproduced below.
 
