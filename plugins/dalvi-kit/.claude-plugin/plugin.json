@@ -13,6 +13,8 @@
     "ui-review",
     "accessibility",
     "browser-automation",
-    "playwright"
+    "playwright",
+    "production-data",
+    "data-safety"
   ]
 }

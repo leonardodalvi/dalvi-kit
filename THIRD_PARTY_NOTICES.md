@@ -85,3 +85,24 @@ every copy of the skill. The upstream repository has no NOTICE file.
 
 The only file added to that folder is `agents/openai.yaml` (Codex metadata),
 written for this kit.
+
+## prod-data-guard
+
+`plugins/dalvi-kit/skills/prod-data-guard/` was written for this kit. Its
+exploration phase generalizes the approach of the `schema-exploration` skill
+of [timescale/pg-aiguide](https://github.com/timescale/pg-aiguide) (commit
+`1aef6e4`), which covers PostgreSQL only, to other databases, REST APIs and
+input files.
+
+Copied text is limited to two PostgreSQL queries in
+`references/exploration-recipes.md`, the "context" and the "relations in one
+schema" queries, adapted from `skills/schema-exploration/references/overview.md`.
+Changes: columns removed (`search_path`, `oid`, `owner`, schema usage,
+`populated`), `current_role_has_table_select` renamed to `can_select`, an
+inline comment dropped, reformatted. The file says so next to the queries.
+
+Copyright 2025 Timescale, Inc., d/b/a Tiger Data. Licensed under the Apache
+License, Version 2.0. The license text and the upstream NOTICE file ship with
+the skill, unmodified, in `plugins/dalvi-kit/skills/prod-data-guard/LICENSE`
+and `plugins/dalvi-kit/skills/prod-data-guard/NOTICE`. They cover the adapted
+queries; the rest of the skill is this kit's own text.

@@ -57,6 +57,7 @@ os arquivos e não se atualiza sozinha: rode `npx skills@latest update`.
 | `grilling` | O agente aciona sozinho, ou o `grill-me` chama | O método da entrevista: árvore de decisões, fronteira, rodadas com resposta recomendada, confirmação antes de agir |
 | `web-design-guidelines` | O agente aciona sozinho quando você pede revisão de UI, acessibilidade ou UX | Revisa código de interface contra as Web Interface Guidelines da Vercel e aponta cada problema em `arquivo:linha` |
 | `playwright-cli` | O agente aciona sozinho quando precisa usar um navegador ou rodar testes Playwright | Abre e controla um navegador pelo `playwright-cli` (navegar, clicar, preencher, capturar tela, gravar vídeo, simular requisições) e roda, depura e gera testes Playwright |
+| `prod-data-guard` | O agente aciona sozinho quando vai ler ou alterar dado de produção (banco, API REST, carga em massa) | Explora só a estrutura, sem imprimir valor de campo. Para alterar, faz ensaio sem gravar, pede confirmação digitada, aplica, confere linha a linha contra a fonte e apaga os temporários com dado pessoal |
 
 O `playwright-cli` precisa do programa instalado: `npm install -g @playwright/cli@latest`,
 ou um Playwright local no projeto (`npx playwright cli`). No Claude Code, a skill
@@ -68,6 +69,12 @@ As regras do `web-design-guidelines` ficam numa cópia fixa dentro da skill
 atualizar, baixe de novo o `command.md` do
 [vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines)
 e troque o commit citado no `SKILL.md` e em `THIRD_PARTY_NOTICES.md`.
+
+O `prod-data-guard` traz o método, não as regras de cada lugar. Quais sistemas
+são somente leitura, quem confirma uma alteração e com que palavra, e onde
+podem ficar os arquivos temporários ficam no `CLAUDE.md` ou no `AGENTS.md` do
+projeto, e a skill manda procurar ali. Sem regra no projeto, ela pede a
+confirmação a quem fez o pedido.
 
 ## Estrutura
 
@@ -109,6 +116,10 @@ plugins/dalvi-kit/
 - `playwright-cli` vem de
   [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli), sob
   licença Apache 2.0, com o texto da licença dentro da pasta da skill.
+- `prod-data-guard` foi escrita para este kit. As consultas de PostgreSQL em
+  `references/exploration-recipes.md` adaptam a skill `schema-exploration` de
+  [timescale/pg-aiguide](https://github.com/timescale/pg-aiguide), sob licença
+  Apache 2.0, com a licença e o `NOTICE` dentro da pasta da skill.
 
 Os avisos de copyright e as licenças estão em
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
