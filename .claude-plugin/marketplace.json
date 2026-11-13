@@ -1,0 +1,14 @@
+{
+  "name": "leonardodalvi",
+  "description": "Plugins pessoais do Leonardo Dalvi para o Claude Code.",
+  "owner": {
+    "name": "Leonardo Dalvi Alvarenga"
+  },
+  "plugins": [
+    {
+      "name": "dalvi-kit",
+      "source": "./plugins/dalvi-kit",
+      "description": "Skills pessoais do Leonardo Dalvi para o dia a dia de trabalho no Claude Code."
+    }
+  ]
+}

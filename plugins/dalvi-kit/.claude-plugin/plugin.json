@@ -1,0 +1,14 @@
+{
+  "name": "dalvi-kit",
+  "version": "0.1.0",
+  "description": "Skills pessoais do Leonardo Dalvi para o dia a dia de trabalho no Claude Code.",
+  "author": {
+    "name": "Leonardo Dalvi Alvarenga"
+  },
+  "repository": "https://github.com/leonardodalvi/dalvi-kit",
+  "keywords": [
+    "productivity",
+    "planning",
+    "interview"
+  ]
+}
