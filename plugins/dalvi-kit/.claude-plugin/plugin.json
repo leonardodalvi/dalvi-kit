@@ -21,6 +21,8 @@
     "meeting-minutes",
     "transcription",
     "document-metadata",
-    "office-files"
+    "office-files",
+    "security-audit",
+    "vulnerability-research"
   ]
 }

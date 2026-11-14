@@ -61,6 +61,7 @@ os arquivos e não se atualiza sozinha: rode `npx skills@latest update`.
 | `session-closeout` | O agente aciona só quando você pede, com essas palavras, para encerrar a sessão ("encerra a sessão", "wrap up") | Registra os procedimentos e as soluções achadas depois de um erro, anexa uma entrada ao log do dia, reescreve o estado e commita só os arquivos que a sessão tocou, sem levar junto o trabalho de outras sessões |
 | `meeting-minutes` | O agente aciona sozinho quando há transcrição ou gravação de reunião para virar ata (`.vtt`, export do Teams, texto de gravador) | Transforma a transcrição em diálogo legível e escreve a ata com as decisões (e quem decidiu) e as ações (responsável, prazo, critério de aceite). Grava a ata no lugar que a regra de privacidade do projeto define e encaminha cada decisão e cada ação ao destino do projeto, pedindo confirmação antes de criar item ou mandar mensagem num sistema externo |
 | `scrub-before-send` | O agente aciona sozinho quando um `.docx`, `.pptx`, `.xlsx` ou `.pdf` vai sair (para cliente, publicação, e-mail), sobretudo quando foi feito a partir do arquivo de outro cliente | Inspeciona o arquivo sem alterá-lo e relata o que ele carrega fora da tela: metadados e autor, modelo vinculado, comentários, revisões, slides ocultos, anotações, texto alternativo, cabeçalhos, campos com caminho local e os termos proibidos, inclusive quando estão partidos em trechos. Depois do seu aval, limpa uma cópia, varre de novo, confere a integridade e entrega o caminho |
+| `security-audit` | O agente aciona sozinho em pergunta de segurança sobre o código, revisão focada, busca de vulnerabilidades, auditoria de segurança ou pen test do código. No Claude Code, a revisão só do diff da branch continua com o `/security-review` embutido | Em pergunta ou revisão focada, orienta sem gravar arquivo. Na auditoria completa, roda seis fases com subagentes isolados: reconhecimento, caça guiada por um registro de cobertura, validação de cada candidato por outro agente, `findings.json` conferido pelos validadores, nova verificação e relatório. Só confirma uma falha com o rastro no código e um resultado observado |
 
 O `playwright-cli` precisa do programa instalado: `npm install -g @playwright/cli@latest`,
 ou um Playwright local no projeto (`npx playwright cli`). No Claude Code, a skill
@@ -110,6 +111,20 @@ confiar num resultado zero, o script planta cada termo e confere que o acha. O
 novo. Na planilha, abas ocultas, nomes definidos, vínculos externos e caches de
 tabela dinâmica são relatados, mas não removidos, porque as fórmulas dependem
 deles.
+
+Na auditoria completa, o `security-audit` grava os arquivos (`REPORT.md`,
+`findings.json`, o registro de cobertura) numa pasta fora do repositório
+auditado, por padrão `~/security-audit-skill/<repo>/run-<N>`. Para gravar em
+outro lugar, diga a pasta no pedido. Os validadores precisam de Node.js, e a
+auditoria completa, de um harness com subagentes. A skill só executa código do
+repositório auditado dentro de uma sandbox do sistema operacional, sem rede.
+Sem ela, fica na leitura do código e deixa como `needs_validation` o que
+dependeria de execução. Ela não testa nada publicado nem instala dependências.
+A auditoria completa custa bem mais que uma revisão comum: no teste do kit, no
+perfil quick e num repositório de 11 arquivos, foram 15 subagentes, 26 minutos
+e cerca de US$ 10. No Windows, as CLIs dos validadores não rodam, porque o Node
+não tem ali `O_NOFOLLOW` e `O_NONBLOCK`. No teste, o agente validou pelas
+funções que elas exportam.
 
 ## Estrutura
 
@@ -168,6 +183,10 @@ plugins/dalvi-kit/
   só a biblioteca padrão do Python. Das skills `docx`, `pptx` e `pdf` da
   Anthropic, sob licença Apache 2.0, vieram só ideias; nenhum código foi
   copiado.
+- `security-audit` vem de
+  [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill),
+  sob licença MIT, sem alteração e com o texto da licença dentro da pasta da
+  skill.
 
 Os avisos de copyright e as licenças estão em
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
