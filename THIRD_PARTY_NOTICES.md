@@ -189,3 +189,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+## scrub-before-send
+
+`plugins/dalvi-kit/skills/scrub-before-send/` (`SKILL.md`, `agents/openai.yaml`
+and `scripts/scrub.py`) was written for this kit. The script uses only the
+Python standard library, plus `pypdf` through its public API when it is
+installed.
+
+No code or text was copied from third parties. The `docx`, `pptx` and `pdf`
+skills that Anthropic distributes with Claude were read for ideas: removing the
+parts nothing refers to, and their content-type overrides, after deleting
+slides (`pptx/scripts/clean.py`), and reading PDF metadata with `pypdf`. Their
+`LICENSE.txt` is the Apache License, Version 2.0, without a copyright line, and
+they ship no NOTICE file.

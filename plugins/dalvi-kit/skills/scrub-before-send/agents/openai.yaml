@@ -1,0 +1,3 @@
+interface:
+  display_name: "Scrub Before Send"
+  short_description: "Remove hidden leftovers before a file goes out"

@@ -19,6 +19,8 @@
     "session-handoff",
     "git",
     "meeting-minutes",
-    "transcription"
+    "transcription",
+    "document-metadata",
+    "office-files"
   ]
 }
