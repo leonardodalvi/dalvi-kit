@@ -1,0 +1,3 @@
+interface:
+  display_name: "Meeting Minutes"
+  short_description: "Turn transcripts into minutes and route what was decided"

@@ -59,6 +59,7 @@ os arquivos e não se atualiza sozinha: rode `npx skills@latest update`.
 | `playwright-cli` | O agente aciona sozinho quando precisa usar um navegador ou rodar testes Playwright | Abre e controla um navegador pelo `playwright-cli` (navegar, clicar, preencher, capturar tela, gravar vídeo, simular requisições) e roda, depura e gera testes Playwright |
 | `prod-data-guard` | O agente aciona sozinho quando vai ler ou alterar dado de produção (banco, API REST, carga em massa) | Explora só a estrutura, sem imprimir valor de campo. Para alterar, faz ensaio sem gravar, pede confirmação digitada, aplica, confere linha a linha contra a fonte e apaga os temporários com dado pessoal |
 | `session-closeout` | O agente aciona só quando você pede, com essas palavras, para encerrar a sessão ("encerra a sessão", "wrap up") | Registra os procedimentos e as soluções achadas depois de um erro, anexa uma entrada ao log do dia, reescreve o estado e commita só os arquivos que a sessão tocou, sem levar junto o trabalho de outras sessões |
+| `meeting-minutes` | O agente aciona sozinho quando há transcrição ou gravação de reunião para virar ata (`.vtt`, export do Teams, texto de gravador) | Transforma a transcrição em diálogo legível e escreve a ata com as decisões (e quem decidiu) e as ações (responsável, prazo, critério de aceite). Grava a ata no lugar que a regra de privacidade do projeto define e encaminha cada decisão e cada ação ao destino do projeto, pedindo confirmação antes de criar item ou mandar mensagem num sistema externo |
 
 O `playwright-cli` precisa do programa instalado: `npm install -g @playwright/cli@latest`,
 ou um Playwright local no projeto (`npx playwright cli`). No Claude Code, a skill
@@ -85,6 +86,16 @@ nota de passagem na pasta temporária do sistema e faz um commit local, sem push
 Arquivo que outra sessão também alterou entra só com as linhas desta sessão; o
 que já existia sem estar no git, como o log do dia começado por outra sessão,
 fica fora do commit, e ela avisa.
+
+O `meeting-minutes` também traz só o método. Onde ficam as atas, quais reuniões
+são privadas (conversa a dois, reunião que discute pessoa identificada) e o que
+não pode sair da pasta delas, e para onde vão as decisões e as ações ficam no
+`CLAUDE.md` ou no `AGENTS.md` do projeto. A reunião é classificada inteira: se
+uma parte dela é privada, a ata toda vai para a pasta privada, e o conteúdo não
+sai de lá sem o seu aval, item por item. Sem regra no projeto, se a reunião
+tem dado pessoal, ela pergunta onde gravar antes de escrever qualquer arquivo.
+O conversor `scripts/transcript_to_dialogue.py` precisa de Python 3, sem
+dependências; sem Python, o agente faz a mesma limpeza lendo o arquivo.
 
 ## Estrutura
 
@@ -135,6 +146,10 @@ plugins/dalvi-kit/
   com inspiração na `retro` do mesmo repositório. Da `wrap-up` de
   [rohitg00/pro-workflow](https://github.com/rohitg00/pro-workflow), que não
   declara licença, vieram só ideias, sem texto copiado.
+- `meeting-minutes` adapta a skill `meeting-minutes` de
+  [github/awesome-copilot](https://github.com/github/awesome-copilot), sob
+  licença MIT. A leitura de transcrição, a regra de privacidade antes de
+  escrever e o encaminhamento com confirmação foram acrescentados para este kit.
 
 Os avisos de copyright e as licenças estão em
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

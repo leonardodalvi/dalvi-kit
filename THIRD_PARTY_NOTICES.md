@@ -128,3 +128,64 @@ The `wrap-up` skill of
 [rohitg00/pro-workflow](https://github.com/rohitg00/pro-workflow) (commit
 `86d5f27`) declares no license. Only ideas were taken from it (an end-of-session
 audit of the changes and a note for the next session); no text was copied.
+
+## meeting-minutes
+
+`plugins/dalvi-kit/skills/meeting-minutes/SKILL.md` is adapted from
+`skills/meeting-minutes/SKILL.md` of
+[github/awesome-copilot](https://github.com/github/awesome-copilot) (commit
+`68e5889`). Kept from it: the structure of the minutes, with each decision
+recording who decided, a one-line rationale and the effective date, and each
+action item its owner, due date and acceptance criteria; `TBD` for missing
+information; decisions and actions first, plain language, ISO dates and no
+speculation; opinions marked as such or left out; and keeping personal data
+out of what is published.
+
+Changes: the text was rewritten and condensed, and the template reduced
+(agenda, risks, attachments and the version log dropped). Removed: the limit
+to meetings of up to 60 minutes, times in UTC, the required clarifying
+questions (replaced by asking only for what is missing: the date, an unclear
+identity, the destination), the example prompts, and the step that publishes
+the minutes and creates tasks in the team's tracker. Added for this kit:
+
+- reading transcripts as input: WebVTT with `<v Name>` voice tags, the
+  Microsoft Teams export and plain text from a recorder, with
+  `scripts/transcript_to_dialogue.py`, which drops timing lines and duplicated
+  cues and joins consecutive lines of one speaker; and the checks on shared
+  accounts, display names, missing dates and speech-recognition noise;
+- a privacy step before writing: read the project's rules on private meetings,
+  classify the whole meeting, write the minutes in the right place, and ask
+  first when the project has no rule and the meeting has personal data;
+- routing each decision and action to the destination the project defines,
+  with the user's approval before anything is created or sent in a shared or
+  external system, and nothing from a private meeting leaving its folder
+  without approval.
+
+`scripts/transcript_to_dialogue.py` and `agents/openai.yaml` were written for
+this kit.
+
+The upstream skill is distributed under the MIT License:
+
+```
+MIT License
+
+Copyright GitHub, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```

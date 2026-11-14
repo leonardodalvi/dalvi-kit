@@ -17,6 +17,8 @@
     "production-data",
     "data-safety",
     "session-handoff",
-    "git"
+    "git",
+    "meeting-minutes",
+    "transcription"
   ]
 }
