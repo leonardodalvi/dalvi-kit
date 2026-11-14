@@ -1,3 +1,3 @@
 interface:
   display_name: "Playwright CLI"
-  short_description: "Automate browsers and work with Playwright tests"
+  short_description: "Test pages in a real browser and work with Playwright tests"

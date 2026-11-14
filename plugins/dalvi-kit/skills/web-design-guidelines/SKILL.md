@@ -1,6 +1,6 @@
 ---
 name: web-design-guidelines
-description: Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check accessibility", "audit design", "review UX", or "check my site against best practices".
+description: Review UI code for Web Interface Guidelines compliance by reading the source (project files, or the HTML a page serves) and report findings as file:line. Use when asked to "review my UI", "UI review", "check accessibility", "audit design", "review UX", or "check my site against best practices". Opening, navigating, interacting with or testing a page in a real browser belongs to playwright-cli; when a request asks for both, use both.
 metadata:
   author: vercel
   version: "1.0.0"

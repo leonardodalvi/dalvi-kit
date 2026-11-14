@@ -1,8 +1,10 @@
 ---
 name: playwright-cli
-description: Automate browser interactions, test web pages and work with Playwright tests.
+description: Automate browser interactions, test web pages and work with Playwright tests. Use when a task needs a real browser, such as opening, navigating or interacting with a page, checking that something on it works, taking screenshots, collecting the user's design feedback on the live page with show --annotate, or running, debugging and generating Playwright tests. A UI review against design and accessibility guidelines, of the code or of a page's HTML, belongs to web-design-guidelines; when a request asks for both, use both.
 allowed-tools: Bash(playwright-cli:*) Bash(npx playwright:*) Bash(npx --no-install playwright:*)
 ---
+
+<!-- Modified for dalvi-kit from skills/playwright-cli/SKILL.md of microsoft/playwright-cli (commit 745fbc7). Changed: the description in the frontmatter, the comment on `show --annotate` and the "Example: Interactive session" paragraph, which now send UI reviews against design and accessibility guidelines to the web-design-guidelines skill. See THIRD_PARTY_NOTICES.md at the root of the dalvi-kit repository. -->
 
 # Browser Automation with playwright-cli
 
@@ -199,7 +201,7 @@ playwright-cli video-stop
 playwright-cli video-show-actions --duration=600 --position=top-right --highlight-style="outline: 2px solid #333"
 playwright-cli video-hide-actions
 
-# launch the dashboard for UI review / design feedback — user annotates the page, you receive the annotated screenshot, snapshot, and notes
+# launch the dashboard for design feedback on the live page — user annotates the page, you receive the annotated screenshot, snapshot, and notes
 playwright-cli show --annotate
 
 # generate a Playwright locator for an element from its ref or selector
@@ -461,7 +463,7 @@ playwright-cli close
 
 ## Example: Interactive session
 
-Ask the user for UI review or design feedback. The user draws boxes on the live page and types comments; you receive the annotated screenshot, the snapshot of the marked region, and the user's notes. Use this whenever the user asks for "UI review", "design feedback", or to "ask the user what they think / want / mean":
+Ask the user for design feedback on the live page. The user draws boxes on the live page and types comments; you receive the annotated screenshot, the snapshot of the marked region, and the user's notes. For a "UI review" against design and accessibility guidelines, of the code or of the page's HTML, use the web-design-guidelines skill, together with this one when the page also has to be opened or tested. Use this when the user asks for "design feedback" on the live page, wants to mark it up themselves, or you need to "ask the user what they think / want / mean":
 
 ```bash
 playwright-cli open https://example.com

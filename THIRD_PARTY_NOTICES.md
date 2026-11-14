@@ -38,9 +38,18 @@ SOFTWARE.
 `plugins/dalvi-kit/skills/web-design-guidelines/SKILL.md` is derived from
 [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
 (commit `ba46938`). That repository states in its README that it is licensed
-under MIT; it ships no LICENSE file with a copyright line. The only change:
-the skill reads the bundled `references/command.md` instead of fetching the
-guidelines from the internet on every review.
+under MIT; it ships no LICENSE file with a copyright line. Changes:
+
+- the skill reads the bundled `references/command.md` instead of fetching the
+  guidelines from the internet on every review;
+- the `description` in the frontmatter says the skill reviews by reading the
+  source (project files, or the HTML a page serves) with `file:line` findings,
+  adds "UI review" to its triggers, sends opening, navigating, interacting with
+  and testing a page in a real browser to the `playwright-cli` skill, and says
+  to use both when a request asks for both, so the two skills no longer
+  compete for UI review requests.
+
+`agents/openai.yaml` (Codex metadata) was written for this kit.
 
 `plugins/dalvi-kit/skills/web-design-guidelines/references/command.md` is an
 unmodified copy of `command.md` from
@@ -74,9 +83,30 @@ SOFTWARE.
 ## playwright-cli
 
 `plugins/dalvi-kit/skills/playwright-cli/` (`SKILL.md` and `references/`) is
-an unmodified copy of `skills/playwright-cli` from
+a copy of `skills/playwright-cli` from
 [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli)
-(commit `745fbc7`).
+(commit `745fbc7`). `references/` is unmodified.
+
+`SKILL.md` is modified, and a comment at the top of its body says so. Changes,
+so that this skill and `web-design-guidelines` no longer compete for UI review
+requests:
+
+- the `description` in the frontmatter keeps the upstream sentence and adds
+  when to use the skill (a task that needs a real browser: opening, navigating
+  or interacting with a page, checking that something on it works,
+  screenshots, design feedback on the live page with `show --annotate`,
+  Playwright tests), sends a UI review against design and accessibility
+  guidelines, of the code or of a page's HTML, to the `web-design-guidelines`
+  skill, and says to use both when a request asks for both;
+- in the body, the comment on `playwright-cli show --annotate` says "design
+  feedback on the live page" instead of "UI review / design feedback", and the
+  "Example: Interactive session" paragraph no longer sends every "UI review"
+  request to `show --annotate`: a UI review against the guidelines goes to
+  `web-design-guidelines` (together with this skill when the page also has to
+  be opened or tested), and `show --annotate` stays for design feedback the
+  user gives on the live page.
+
+The rest of `SKILL.md` is unchanged.
 
 Copyright (c) Microsoft Corporation. Licensed under the Apache License,
 Version 2.0. The full license text ships with the skill, in
